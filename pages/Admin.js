@@ -48,9 +48,9 @@ export default {
             fetch('http://localhost:8000/api/requests', { headers, method: 'POST' })
                 .then(data => data.json())
                 .then(resp => {
-                    console.log(resp);
-                    this.requests = resp.requests
+                    this.requests = resp.requests.data
                 })
+
 
         },
         removeCat(id) {

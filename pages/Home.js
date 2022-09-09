@@ -1,33 +1,26 @@
 import Register from "./Register.js";
 import Login from "./Login.js";
+import {RequestModel} from "../models/RequestModel.js";
+const requestModel = new RequestModel();
 
 export default {
     data() {
         return {
-            applications: []
+            applications: [],
+            counter: 0,
         }
     },
     created() {
-
+        this.updateCounter();
+        setInterval(this.updateCounter, 3000);
+        requestModel.getAll().then(data => this.applications = data)
     },
     methods: {
-        fetchApplications() {
-            const body = JSON.stringify({
-                login: this.login,
-                password: this.password
-            })
-
-            const headers = {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-
-            // fetch('http://localhost:8080/auth', { body, headers, method: 'POST' })
-            //     .then(resp => resp.json())
-            //     .then(data => {
-            //         console.log(data)
-            //     })
-        }
+        updateCounter() {
+            requestModel.counter().then(data => {
+                this.counter = data;
+            }).catch(err => console.log(err));
+        },
     },
     computed: {
         auth() {
@@ -43,16 +36,16 @@ export default {
             <login-form v-if="!auth"></login-form>
         </div>
         <div class="counter">
-            Мы обслужили уже 0 питомцев!
+            Мы обслужили уже {{ counter }} питомцев!
         </div>
         <ul class="applications">
-            <li class="applicatios__item application">
+           <li class="applicatios__item application" v-for="application in applications" :key="application.id">
                 <img src="/logo/logo_groom.png" alt="" class="application__image">
                 <div class="application__info">
-                    <h3 class="application__name"> Жучка </h3>
-                    <span class="application__date"> 20.02.2022 </span> <br>
-                    <span class="application__status"> Услуга оказана </span> <br>
-                    <span class="application__type"> Тип Стрижка </span>
+                    <h3 class="application__name">{{ application.pet_name }}</h3>
+                    <span class="application__date"> {{ application.created_at.split('T')[0] }}</span> <br>
+                    <span class="application__status"> {{ application.status == 'new' ? "Новая" : application.status == 'done' ? "Услуга оказана" : "Данные в обработке" }} </span> <br>
+                    <span class="application__type"> {{ application.category_id }} </span> <br>
                 
 </div>
 </li>   

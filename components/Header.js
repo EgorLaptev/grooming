@@ -9,7 +9,14 @@ export default {
             this.showMenu = !this.showMenu
         },
         logout() {
-
+            localStorage.removeItem('token');
+            this.$forceUpdate();
+            router.push('/')
+        }
+    },
+    computed: {
+        auth() {
+            return !!localStorage.getItem('token')
         }
     },
     template: `
@@ -24,14 +31,17 @@ export default {
                         <li class="menu__item">
                             <router-link to="/" class="menu__link"> Главная </router-link>
         </li>
-                        <li class="menu__item">
+                        <li class="menu__item"  v-if="auth">
                             <router-link to="/profile" class="menu__link"> Личный кабинет </router-link>
         </li>
-                        <li class="menu__item">
-                            <router-link to="/groom" class="menu__link"> Админ панель </router-link>
+                        <li class="menu__item" v-if="auth">
+                            <router-link to="/groom" class="menu__link" > Админ панель </router-link>
         </li>
-                        <li class="menu__item">
-                            <button @click="logout" class="menu__link"> Выход </button>
+                        <li class="menu__item" v-if="auth">
+                            <router-link to="/new-application" class="menu__link" > Добавить заявку </router-link>
+        </li>
+                        <li class="menu__item" v-if="!auth">
+                            <button @click="logout" class="menu__link" > Выход </button>
         </li>
         </ul>
                 

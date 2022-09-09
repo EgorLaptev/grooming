@@ -24,6 +24,7 @@ export default {
                     if (data.auth?.data) {
                         localStorage.setItem('token', data.auth.data)
                         window.router.push('/')
+                        this.$forceUpdate();
                     }
                 })
 

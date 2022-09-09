@@ -1,3 +1,7 @@
+.login {
+    margin-top: 60px;
+}
+
 .login__container {
     display: flex;
     flex-direction: column;

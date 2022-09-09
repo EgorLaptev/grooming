@@ -17,10 +17,11 @@ export default {
 
             const headers = {
                 'Content-Type': 'application/json',
-                'Accept': 'application/json'
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
             }
 
-            fetch('http://localhost:8080/auth', { body, headers, method: 'POST' })
+            fetch('http://localhost:8000/api/request/create', { body, headers, method: 'POST' })
                 .then(resp => resp.json())
                 .then(data => {
                     console.log(data)
@@ -29,7 +30,7 @@ export default {
         }
     },
     template: `
-        <link rel="stylesheet" href="/assets/css/login.css">
+        <link rel="stylesheet" href="/assets/css/new-application.css">
         <section class="login">
             <div class="login__container container">
                 <h1 class="login__title"> Заявка </h1>

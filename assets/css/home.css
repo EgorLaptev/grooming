@@ -56,3 +56,10 @@
 .application {
 
 }
+
+@media screen and (min-width: 900px) {
+    .auth {
+        grid-template-columns: repeat(2, minmax(200px, 500px));
+        justify-content: space-around;
+    }
+}

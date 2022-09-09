@@ -10,7 +10,6 @@ export default {
         },
         logout() {
             localStorage.removeItem('token');
-            this.$forceUpdate();
             router.push('/')
         }
     },
@@ -40,7 +39,7 @@ export default {
                         <li class="menu__item" v-if="auth">
                             <router-link to="/new-application" class="menu__link" > Добавить заявку </router-link>
         </li>
-                        <li class="menu__item" v-if="!auth">
+                        <li class="menu__item" v-if="auth">
                             <button @click="logout" class="menu__link" > Выход </button>
         </li>
         </ul>

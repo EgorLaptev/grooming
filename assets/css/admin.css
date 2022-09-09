@@ -1,0 +1,31 @@
+.profile__container {
+    padding: 80px 16px;
+}
+
+.application {
+    border: 1px solid #ededed;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 32px;
+    gap: 32px;
+}
+
+.application__image {
+    height: 80px;
+    background: #666;
+    border-radius: 8px;
+}
+
+.application__name {
+    margin: 0;
+    padding: 0;
+}
+
+.application {
+
+}

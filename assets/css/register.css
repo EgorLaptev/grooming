@@ -1,0 +1,32 @@
+.login__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 64px 32px;
+}
+
+.login__title {
+    font-size: 48px;
+}
+
+.login__form {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 8px;
+}
+
+.login__input {
+    height: 40px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ededed;
+    padding: 8px 16px;
+}
+
+.login__input_submit {
+    border-color: #FF9400;
+    background-color: #FF9400;
+    color: white;
+}
